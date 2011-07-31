@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="org.eclipse.ui.editorActions"> 
+		<editorContribution id="flowbuilder.editor.contribution1" targetID="flowbuilder.editor.CodeEditor">
+   			<action id="flowbuilder.editor.action1" 
+        	 	label="Compilar" icon="icons/compile24.gif" tooltip="Compilar Código"
+      			toolbarPath="Normal/additions" class="flowbuilder.editor.action.CodeEditorCompileAction"> 
+      		</action>
+      		<action id="flowbuilder.editor.action2" 
+        	 	label="Gerar Fluxo" icon="icons/fbd24.gif" tooltip="Gerar Fluxograma"
+      			toolbarPath="Normal/additions" class="flowbuilder.editor.action.CodeEditorGenerateFlowAction"> 
+      		</action> 
+   		</editorContribution>  
+	</extension> 
+
+	<extension point="org.eclipse.ui.editorActions"> 
+		<editorContribution id="flowbuilder.diagram.contribution1" targetID="flowbuilder.diagram.FlowEditor">
+   			<action id="flowbuilder.diagram.action1" 
+        	 	label="Exportar" icon="icons/fbd24.gif" tooltip="Exportar Imagem"
+      			toolbarPath="Normal/additions" class="flowbuilder.diagram.action.FlowEditorExportImageAction"> 
+      		</action>
+   		</editorContribution>  
+	</extension> 
+
+   <extension
+         point="org.eclipse.ui.editors">
+       <editor
+            name="Flow Builder Code Editor"
+            extensions="fbc"
+            icon="icons/fbc16.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="flowbuilder.editor.CodeEditor"
+            id="flowbuilder.editor.CodeEditor">
+      </editor>
+   </extension>
+      <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="Flow Builder"
+            id="FlowBuilderCategory">
+      </category>
+      <wizard
+            name="Flow Builder Code"
+            icon="icons/fbc16.gif"
+            category="FlowBuilderCategory"
+            class="flowbuilder.editor.wizard.CodeCreationWizard"
+            id="flowbuilder.editor.wizard.CodeCreationWizard">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+       <editor
+            name="Flow Builder Diagram Editor"
+            extensions="fbd"
+            icon="icons/fbd16.gif"
+            contributorClass="flowbuilder.diagram.FlowActionBarContributor"
+            class="flowbuilder.diagram.FlowEditor"
+            id="flowbuilder.diagram.FlowEditor">
+      </editor>
+   </extension>
+</plugin>

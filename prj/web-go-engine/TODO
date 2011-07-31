@@ -1,0 +1,119 @@
+TODO: Organize, and detail each of them
+
+#DONE
+======
+    - SGF
+        - General format parser
+        - No bugs (yet!)
+
+#Pending/Roadmap
+================
+    o Current:
+    ----------
+        - SGF (lib)
+            - Generate parse result tree
+                - SGF Parser calling generic sgf builder
+                - SGF Builder for GO
+                - Go Tree and nodes
+
+    o Waiting (not necessary in order):
+    ----------
+        - Functional Go Board
+            - Define overall usability
+            - Lightweight GUI using HTML5 canvas
+                - Study some if HTML5 is not available
+                - Screen space optimizations 
+                    - (NDC) Respect aspect ratio and resize, without lose of quality
+
+
+#Ideas
+========
+    - SGF
+        - SGF validation, better errors on parse
+        - Backwards versions compatibility?
+        - Generate parse result tree
+            - For chess?
+    - Other iGo file formats?
+
+    - Functional Go Board
+        - Do some if there is no HTML5?
+        - Lightweight GUI using HTML5 canvas
+            - Support of personalized goishi images (less priority)
+
+- Study how to permit SGF from another resourses like KGS or Go teaching ladder
+    - Cross domain, just if other resources support it
+        - CORS
+        - JSONP
+    - Study if there is some kind of (legal?) problem storing sgfs links that users wants to see using go Gui
+
+- Go Board working with Go Tree Game, supporting SGF
+    - SGF file download, without going to server
+        - From javascript memory to download as sgf file
+        - Problems with download in old browsers?
+    - Browser cache, not load new SGFs from server, just if there is none on browser
+        - Cookies
+        - HTML5 DB
+            - Convert Cookies if they exists
+
+- OpenId logins (most that exists, but Google first)
+- Like many paste sites (code/programming languages), but for GO and Chess
+    - Public available links
+        - Share on many other sites
+    - Respect privacy policies
+
+- KGS Integration using these resources
+    - As optimized games as possible
+    - Multi client per board
+    - Just two players playing
+    - Chat
+    - Everything like KGS
+    - Just played game download
+
+- Integrity checks of games by hashing on javascript and server
+- Bug report system
+
+- Promote reviews (public review board)
+    - Public reviewers board
+    - Vote on people and games
+        - Like bug votes, become more visible to resolve
+    - Common web filters for any search
+
+- Public articles (public wiki?)
+- Chat (any), try to make an wiki, and edit it before
+- Any kind of vote, allow to justify
+
+--------------------------------------------------
+-Global paste of games, (embeded or simple link to game).
+
+Permitir colocar jogadas prédefinidas (no caso de GO um sgf, verificar o formato de outros jogos!). E permitir o computador jogar pelo outro jogador nessas jogadas pré-definidas.
+Permitir simplesmente fazer um paste de algum tabuleiro.
+Permitir no client alimentar as possíveis jogadas, apenas disponibilizando o tabuleiro online.
+Permitir no client alimentar skins e profiles dos tabuleiros.
+Permitir extender tabuleiros base e programar mais jogos.
+Permitir definir sons para jogadas ou eventos, dar controle total para o programador que quer estender a biblioteca.
+Permitir além de acessar diretamente online, também poder baixar as bilbiotecas e programar.
+
+Allow in game vote (public watchers)
+
+--------------------------------------------------
+Além dos requisitos padrões quanto a isto.
+
+Adicionar coisas como, requerer review, dai iria para um dashboard de reviews.
+
+Reviews feitos.
+
+Rate e rankeamentos de reviews.
+
+Conceito do slow-go (poucos movimentos por dia).
+
+Filtros por ranking, nome, ou outros tipos de informação.
+
+Integrar com o IGO local.
+
+Verificar como integrar com o stackexchange de GO.
+
+White GO (só em memória).
+
+Invisible GO (não aparece, só no fim do jogo), apenas aparece o último que o cara clicou.
+
+Se disponibilizar como teacher, e como aluno procurando teacher.

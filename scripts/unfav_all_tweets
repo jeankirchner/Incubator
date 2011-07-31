@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+import re
+import tweepy
+from time import sleep
+
+twt_consumer_key="rUONFQe2QjSmIVUQvIUpMA"
+twt_consumer_secret="ExdRnXb7APiDjqLWBWTwmZekID2gGsU4CqjOCEqtc"
+twt_access_token="56124306-02XSqhbNRRnZQOVFbW4h6aBwdxOai6aUeFzsKvek1"
+twt_access_token_secret="gGeoMqVcxG92fo0Il8DCPpIgWiPFw8AzLwKan2tyI5ONW"
+twt_auth = tweepy.OAuthHandler(twt_consumer_key, twt_consumer_secret)
+twt_auth.set_access_token(twt_access_token, twt_access_token_secret)
+twitter = tweepy.API(twt_auth)
+print "twitter criado com sucesso!"
+print twitter.me().name
+
+twt_fav_page = 1
+twt_favs = twitter.favorites(page=twt_fav_page)
+while twt_favs:
+    for tweet in twt_favs:
+        print tweet.id
+        print tweet.text
+        twitter.destroy_favorite(tweet.id)
+        sleep(15)
+        '''
+        print tweet.text
+        twt_urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', tweet.text)
+        print twt_urls
+        if twt_urls:
+            pocket.add(twt_urls[0])
+        '''
+    print "Alright! ready for the next batch..."
+    twt_fav_page += 1
+    twt_favs = twitter.favorites(page=twt_fav_page)
+

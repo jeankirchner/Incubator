@@ -1,42 +1,41 @@
+"use strict";
 
-    function IdManager() {
-        this.nullCategory = {};
-        this.idMap = {};
-    }
-    
-    IdManager.prototype = {
-        constructor: IdManager,
+function IdManager() {
+    this.nullCategory = {};
+    this.idMap = {};
+}
 
-        genId: function (catName) {
-            var catMap = this.category(catName);
-            if (!catMap.last) {
-                catMap.last = Number.MIN_VALUE;
-            } else {
-                catMap.last++;
-            }
-            return catMap.last;
-        },
-        
-        genStrId: function (catname) {
-            return String(this.genId(catName));
-        },
+IdManager.prototype = {
+    constructor: IdManager,
 
-        category: function (cat) {
-            if (!cat) {
-                return this.nullCategory;
-            }
-            var c = this.idMap[cat];
-            if (!c) {
-                c = {};
-                this.idMap[cat] = c;
-            }
-            return c;
+    genId: function(catName) {
+        var catMap = this.category(catName);
+        if (!catMap.last) {
+            catMap.last = Number.MIN_VALUE;
+        } else {
+            catMap.last++;
         }
-    };
-    IdManager.get = function() {
-        if (!IdManager.instance) {
-            IdManager.instance = new IdManager();
-        }
-        return IdManager.instance;
-    }
+        return catMap.last;
+    },
+    genStrId: function(catName) {
+        return String(this.genId(catName));
+    },
 
+    category: function(cat) {
+        if (!cat) {
+            return this.nullCategory;
+        }
+        var c = this.idMap[cat];
+        if (!c) {
+            c = {};
+            this.idMap[cat] = c;
+        }
+        return c;
+    }
+};
+IdManager.get = function() {
+    if (!IdManager.instance) {
+        IdManager.instance = new IdManager();
+    }
+    return IdManager.instance;
+};

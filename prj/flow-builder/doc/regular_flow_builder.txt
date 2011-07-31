@@ -1,0 +1,42 @@
+caras para serem removidos:
+	comentário linha:
+		\/\/.*$
+		
+	comentário multilinha:
+		\/\*[\s\S]*?\*\/
+
+caras para serem processados
+		
+	Anotação:
+		@note\s*{[\s\S]*?}
+		
+	Declaração processo:
+		process +\w+
+		
+	Começo do processo:
+		begin
+		
+	Final de processo:
+		end
+
+	if:
+		if\s*\([\s\S]*?\)\s+{[\s\S]*?}
+		
+	else:
+		else\s*{[\s\S]*?}$
+		
+	Passos:
+		.*
+		
+	Laço de repetição:
+		loop\s*\(.+?\)\s*{[\s\S]*?}
+	
+	Chamada de subrotina:
+		call .*
+	
+	Bifurcação/fork:
+		fork\s*{[\s\S]*?}
+		
+		Cada passo do fork:
+			task[\s\S]*?task
+

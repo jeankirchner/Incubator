@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SGF Syntax Load</title>
+
+    <script type="text/javascript" src="../../lib/jquery/jquery-1.6.2.js"></script>
+    <script type="text/javascript" src="sgf-parser.js"></script>
+
+    <script type="text/javascript">
+
+        (function(){
+            $(document).ready(function(){
+                $("#btSgf").click(function(){
+                    var sgfText = $("#sgf").val();
+                    mainSGF(sgfText);
+                });
+            });
+        })();
+
+    </script>
+</head>
+<body>
+
+
+<button id="btSgf">Load sgf</button><br>
+<textarea id="sgf" rows="35" cols="100">
+</textarea>
+
+</body>
+</html>
+

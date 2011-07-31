@@ -1,0 +1,84 @@
+process XPTO
+
+//Serve para colocar uma caixa de descrição no primeiro //comando encontrado que vai gerar um simbolo no //diagrama
+@note {
+	Texto que vai ligado por uma caixa no simbolo do begin
+}
+
+@note{
+	Podemos colocar mais anotacoes em caixas diferentes em um mesmo comando
+}
+
+Begin
+
+	//Cada linha de texto, vai ser um passo no //processo, que vai ser representado por uma //caixa no diagrama de atividades
+	A o cara foi lah;
+	E xila;
+	
+	//Isto é uma porra dum comentario
+
+	@note {
+		Isso aqui é uma condição no diagrama de atividades
+	}
+	if (he wants to cook) {
+		Passo1;
+		Passo2;
+		Passo3;
+		Passo4;
+		Passo5;
+		asfd;
+		asfd;
+		asfd;
+		adsf;
+		adsf;
+		asdf;
+	} else {
+		Faz algo;
+		
+		@note{
+			Podemos ter ifs aninhados
+		}
+		If (asdfasdf) {
+			Mais alguns passos;
+		}
+		blah;
+		If (adsfasfd) {
+			adsjasldkfj;
+		}
+	}
+	
+	@note {
+		Passos paralelos
+		Este vai ser a bifurcação no diagrama de atividades, no qual indica que vai executar tarefas em paralelo.
+		Em inglês no diagrama de atividades bifurcação é fork
+	}
+	fork {
+		@note {
+			Cada tarefa que vai ser executada em paralelo deve ter uma task.
+			Esta tarefa vai acabar no inicio da outra task, ou no fim do escopo do fork
+		}
+		task
+			Parallel1;
+		
+		task
+			Parallel2;
+			
+		task
+			Parallel 3;
+		
+	}
+	
+	@note{
+		Indica uma iteração no digrama de atividades
+	}
+	Loop (condicao) {
+		Faz coisas repetidas;
+	}
+	
+	@note {
+		//Call ainda pode ser alterado, é só um token
+		Call vai chamar um outro processo a ser executado como se fosse um passo deste, ou seja um link de processo no diagrama de atividades.
+	}
+	Call nome do processo;
+	
+End

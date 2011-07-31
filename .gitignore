@@ -1,0 +1,14 @@
+# VIM Backup #
+*.swp
+*.swo
+
+# C compiled #
+*.o
+
+# C# compiled
+*.dll
+*.exe
+
+#js
+
+node_modules

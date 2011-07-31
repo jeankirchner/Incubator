@@ -7,8 +7,6 @@
 
 <title>Web Go Engine Tests</title>
 
-<!-- extenal libs -->
-<script type="text/javascript" src="../jquery/jquery-1.6.2.js"></script>
 
 <!-- source files-->
 <script type="text/javascript" src="id-manager.js"></script>
@@ -16,7 +14,7 @@
 <script type="text/javascript" src="goboard.js"></script>
 
 <!-- tests -->
-<script type="text/javascript" src="tests.js"></script>
+<script type="text/javascript" src="js-test-engine.js"></script>
 <script type="text/javascript" src="board-test.js"></script>
 
 
@@ -24,6 +22,10 @@
 
     function _docload() {
         runTests();        
+        var passed = TestControl.get().passed.join('\n');
+        document.getElementById("passed").value = passed;
+        var failed = TestControl.get().failed.join('\n');
+        document.getElementById("failed").value = failed;
     }
 
 </script>
@@ -31,6 +33,13 @@
 </head>
 
 <body onload="_docload()">
+
+<textarea id="passed" cols="100" rows="20">
+</textarea>
+
+<textarea id="failed" cols="100" rows="20">
+</textarea>
+
 </body>
 </html>
 
