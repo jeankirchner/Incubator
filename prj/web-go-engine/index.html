@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<title>Web Go Engine Tests</title>
+
+<script type="text/javascript" src="../jquery/jquery-1.6.2.js"></script>
+
+<script type="text/javascript" src="id-manager.js"></script>
+<script type="text/javascript" src="board.js"></script>
+<script type="text/javascript" src="goboard.js"></script>
+<script type="text/javascript" src="gui.js"></script>
+
+<script type="text/javascript">
+    function _docload() {
+        var cv = $("#canvas")[0];
+        var board = new GuiBoard(19);
+        var ctx = cv.getContext("2d");
+        board.render(ctx);
+    }
+</script>
+
+</head>
+
+<body onload="_docload()">
+
+<canvas id="canvas" width="800px" height="800px"></canvas>
+
+</body>
+</html>
+
