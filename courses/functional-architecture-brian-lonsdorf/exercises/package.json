@@ -1,0 +1,50 @@
+{
+  "name": "main",
+  "version": "main",
+  "description": "Main",
+  "files": [
+    "lib/"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "pnpm clean && pnpm lint && pnpm compile",
+    "clean": "npx rimraf lib",
+    "compile": "tsc -p .",
+    "compile:watch": "tsc -p . --watch",
+    "lint": "npx eslint \"src/**/*.ts\" --cache",
+    "lint:fix": "npx eslint \"src/**/*.ts\" --fix",
+    "prepublishOnly": "pnpm clean && pnpm lint && pnpm compile",
+    "test": "pnpm test:unit",
+    "test:unit": "jest"
+  },
+  "dependencies": {
+    "yargs": "16.2.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.31",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
+    "jest": "^26.6.3",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.5.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}",
+      "!**/node_modules/**"
+    ],
+    "testMatch": [
+      "**/*.spec.ts",
+      "**/*.test.ts"
+    ]
+  }
+}
