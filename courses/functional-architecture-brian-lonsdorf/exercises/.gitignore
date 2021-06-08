@@ -1,0 +1,10 @@
+.DS_Store
+.env
+.envrc
+.eslintcache
+.vscode
+.log
+*-debug.log
+**/lib
+node_modules
+**/coverage
