@@ -10,7 +10,7 @@ type Monoid<T> = Semigroup<T> & {
   empty: () => T;
 };
 
-const Sum = (x: number) => ({
+const Sum: Semigroup<number> = (x: number) => ({
   x,
   concat: (other: number) => Sum(x + other),
 });

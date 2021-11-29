@@ -1,5 +1,7 @@
 import { options as yargsOptions } from "yargs";
 
+import './ex1';
+
 export async function main() {
   //const logger = () => log.with({ origin: "tools-debit" });
 
@@ -14,4 +16,7 @@ export async function main() {
   const { exerciseId } = argv;
 
   console.log(exerciseId);
+
+
+
 }
