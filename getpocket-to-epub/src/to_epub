@@ -1,0 +1,75 @@
+#!/bin/bash
+
+F_PATH=$(realpath $1)
+echo "Path $F_PATH"
+
+F_NAME=${F_PATH/.json/}
+FILE=$(cat $F_PATH)
+
+mkdir $F_NAME
+pushd $F_NAME 
+  TITLE=$(echo $FILE | jq '.data.title' -r)
+  CREATOR=$(echo $FILE | jq '.data.authors[0].name' -r)
+  CREATOR_URL=$(echo $FILE | jq '.data.authors[0].url' -r)
+  ARTICLE_URL=$(echo $FILE | jq '.data.url' -r)
+  DATE=$(echo $FILE | jq '.data.published' -r)
+  LANG=$(echo $FILE | jq '.data.language' -r)
+  SUBJ=$(echo $FILE | jq '.data.keywords[].name' -r | head -n2 | tr '\n' ', ')
+
+  DESC=$(echo $FILE | jq '.data.description' -r)
+  DESC=${DESC/null/}
+  COVER=$(echo $FILE | jq '.data.images[0].url' -r)
+  COVER=${COVER/null/}
+  CONTENT=$(echo $FILE | jq '.data.content' -r)
+  CSS=$(realpath ../../base.css)
+
+  if [ -z "$CONTENT" ] || [ "null" == "$CONTENT" ]; then
+    echo "Artigo sem conteúdo"
+    exit 
+  fi
+
+  CONTENT="<h1>$TITLE</h1>$CONTENT"
+  if [ "$DESC" ] && [ "$DESC" != "null" ]; then
+    CONTENT="<blockquote><p>$DESC</p></blockquote>$CONTENT"
+  fi
+
+  CONTENT="$CONTENT<p><ul>"
+  if [ "$CREATOR" ] && [ "$CREATOR" != "null" ]; then
+    CONTENT="$CONTENT<li>Author: $CREATOR</li>"
+  fi
+  if [ "$CREATOR_URL" ] && [ "$CREATOR_URL" != "null" ]; then
+    CONTENT="$CONTENT<li>Author url: $CREATOR_URL</li>"
+  fi
+  if [ "$DATE" ] && [ "$DATE" != "null" ]; then
+    DATE=$(date +"%Y-%m-%d" -d @$(  echo "($DATE + 500) / 1000" | bc))
+    CONTENT="$CONTENT<li>Date: $DATE</li>"
+  fi
+  if [ "$ARTICLE_URL" ] && [ "$ARTICLE_URL" != "null" ]; then
+    CONTENT="$CONTENT<li><a href='$ARTICLE_URL'>$ARTICLE_URL</a></li>"
+  fi
+  CONTENT="$CONTENT</ul></p>"
+
+  if [ -f "$COVER" ]; then
+    wget -q $COVER
+    COVER=$(baseName "$COVER")
+    if [ -f $COVER ]; then
+      COVER="--epub-cover-image=$COVER"
+    else
+      COVER=''
+    fi
+  fi
+
+  F_META=metadata.xml
+  cat <<-EOF > $F_META
+<dc:title>${TITLE/null/}</dc:title>
+<dc:creator>${CREATOR/null/}</dc:creator>
+<dc:date>${DATE/null/}</dc:date>
+<dc:language>${LANG/null/}</dc:language>
+<dc:subject>$SUBJ</dc:subject>
+<dc:description>$DESC</dc:description>
+EOF
+
+  echo $CONTENT | pandoc -s --normalize --reference-links --chapters --epub-metadata=$F_META $COVER --epub-stylesheet=$CSS -r html -w epub -o ${F_PATH/.json/.epub}
+popd 
+
+rm -rf $F_NAME
